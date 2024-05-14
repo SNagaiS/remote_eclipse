@@ -23,10 +23,10 @@
 <p>
 <!-- jstlに変更 -->
 <c:out value="${loginUser.name}" />
-<%-- <%= loginUser.getName() %> --%>さん、ログイン中
+<%-- <%= loginUser.getName() %> --%>さん、ログイン中<br>
 <a href="Logout">ログアウト</a>
 </p>
-<p><<a href="Main">更新</a></p>
+<p><a href="Main">更新</a></p>
 <form action="Main" method="post">
 <input type="text" name="text">
 <input type="submit" value="つぶやく"></form>
