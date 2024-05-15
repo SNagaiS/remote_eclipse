@@ -76,8 +76,11 @@ public class Main extends HttpServlet {
 		}
 		
 		//つぶやきリストを取得して、リクエストスコープに保存
-		GetMutterListLogic getMutterListLogic = new GetMutterListLogic();
-		List<Mutter> mutterList = getMutterListLogic.execute();
+		GetMutterListLogic getMutterListLogic = 
+				new GetMutterListLogic();
+		List<Mutter> mutterList = 
+				getMutterListLogic.execute();
+		request.setAttribute("mutterList", mutterList);
 		//メイン画面にフォワード
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher("WEB-INF/jsp/main.jsp");

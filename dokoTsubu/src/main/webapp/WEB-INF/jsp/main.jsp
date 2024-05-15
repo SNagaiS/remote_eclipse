@@ -28,7 +28,8 @@
 </p>
 <p><a href="Main">更新</a></p>
 <form action="Main" method="post">
-<input type="text" name="text">
+件名:<input type="text" name="title"><br>
+本文:<input type="text" name="text"><br>
 <input type="submit" value="つぶやく"></form>
 <%-- <% if(errorMsg != null){ %>
 <p><%= errorMsg %></p>
