@@ -29,7 +29,7 @@ public class MuttersDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 			//SELECT文を準備
-			String sql = "SELECT ID, NAME, TEXT FROM MUTTERS ORDER BY ID DESC";
+			String sql = "SELECT ID, NAME, TITLE, TEXT FROM MUTTERS ORDER BY ID DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SELECTを実行し、結果表を取得
@@ -39,8 +39,9 @@ public class MuttersDAO {
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String userName = rs.getString("NAME");
+				String title = rs.getString("TITLE");
 				String text = rs.getString("TEXT");
-				Mutter mutter = new Mutter(id, userName, text);
+				Mutter mutter = new Mutter(id, userName, title, text);
 				mutterList.add(mutter);
 			}
 		} catch (SQLException e) {
@@ -62,12 +63,13 @@ public class MuttersDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 			//INSERT文の準備(idは自動連番なので指定しなくてよい)
-			String sql = "INSERT INTO MUTTERS (NAME, TEXT) VALUES(?, ?)";
+			String sql = "INSERT INTO MUTTERS (NAME, TITLE, TEXT) VALUES(?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//INSERT文中の「？」に使用する値を設定してSQL文を完成
 			pStmt.setString(1, mutter.getUserName());
-			pStmt.setString(2, mutter.getText());
+			pStmt.setString(2, mutter.getTitle());
+			pStmt.setString(3, mutter.getText());
 
 			//INSERT文を実行(resultには追加された行数が入る)
 			int result = pStmt.executeUpdate();

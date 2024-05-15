@@ -58,6 +58,7 @@ public class Main extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
+		String title = request.getParameter("title");
 		String text = request.getParameter("text");
 		
 		//入力値チェック
@@ -67,7 +68,7 @@ public class Main extends HttpServlet {
 			User loginUser = (User)session.getAttribute("loginUser");
 			
 			//つぶやきをつぶやきリストに追加
-			Mutter mutter = new Mutter(loginUser.getName(), text);
+			Mutter mutter = new Mutter(loginUser.getName(), title, text);
 			PostMutterLogic postMutterLogic = new PostMutterLogic();
 			postMutterLogic.execute(mutter);
 		}else {
