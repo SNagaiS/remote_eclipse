@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Mutter;
+import model.User;
 
 public class MuttersDAO {
 	//データベース接続に使用する情報
@@ -82,4 +83,41 @@ public class MuttersDAO {
 		}
 		return true;
 	}
+	
+	public boolean execute(User user)  {
+		//JDBCドライバを読み込む
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
+		//データベースに接続
+		try (Connection conn = DriverManager.getConnection(
+				JDBC_URL, DB_USER, DB_PASS)) {
+			//SELECT文を準備
+			String sql = "SELECT * FROM USERS";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			//SELECTを実行し、結果表を取得
+			ResultSet rs = pStmt.executeQuery();
+			//結果表に格納されたレコードの内容を
+			//userセッションと比較、合致でtrueを返す
+			int namePassResult = 0;
+			while (rs.next()) {
+				if(rs.getString("NAME").equals(user.getName())
+						&& rs.getString("PASS").equals(user.getPass())) {
+					namePassResult +=1;
+				}
+			}
+			if(namePassResult == 1) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

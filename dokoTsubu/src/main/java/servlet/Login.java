@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.LoginLogic;
+import dao.MuttersDAO;
 import model.User;
 
 /**
@@ -40,8 +40,8 @@ public class Login extends HttpServlet {
 		User user = new User(name, pass);
 		
 		//ログイン処理
-		LoginLogic loginLogic = new LoginLogic();
-		boolean isLogin = loginLogic.execute(user);
+		MuttersDAO muttersDAO = new MuttersDAO();
+		boolean isLogin = muttersDAO.execute(user);
 		
 		//ログイン成功時の処理
 		if(isLogin) {
