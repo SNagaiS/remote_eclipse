@@ -28,7 +28,7 @@ public Account findByLogin(Login login) {
 			JDBC_URL, DB_USER, DB_PASS)){
 		
 		//SELECT文を準備
-		String sql = "SELECT USER_Id, PASS, MAIL, NAME, AGE FROM ACCOUNTS WHERE USERID = ? AND PASS = ?";
+		String sql = "SELECT USER_Id, PASS, MAIL, NAME, AGE FROM ACCOUNTS WHERE USER_ID = ? AND PASS = ?";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setString(1, login.getUserId());
 		pStmt.setString(2, login.getPass());
