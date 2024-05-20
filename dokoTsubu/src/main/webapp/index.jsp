@@ -12,6 +12,7 @@
 ユーザー名:<br><input type="text" name="name"></input><br>
 パスワード:<br><input type="password" name="pass"></input><br>
 <input type="submit" value="ログイン">
+<a href="Registration.java">新規登録はコチラ</a>
 </form>
 </body>
 </html>
