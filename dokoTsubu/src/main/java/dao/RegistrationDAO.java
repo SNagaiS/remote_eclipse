@@ -15,7 +15,7 @@ public class RegistrationDAO {
 	private final String DB_PASS = "";
 
 	//ログイン機能のサブクラス
-	public boolean execute(User user)  {
+	public boolean execute(User user) {
 		//JDBCドライバを読み込む
 		try {
 			Class.forName("org.h2.Driver");
@@ -36,12 +36,12 @@ public class RegistrationDAO {
 			//userセッションと比較、合致でtrueを返す
 			int registrationResult = 0;
 			while (rs.next()) {
-				if(rs.getString("NAME").equals(user.getName())
+				if (rs.getString("NAME").equals(user.getName())
 						|| rs.getString("ADDRESS").equals(user.getAddress())) {
-					registrationResult =1;
+					registrationResult = 1;
 				}
 			}
-			if(registrationResult != 0) {
+			if (registrationResult != 0) {
 				return false;
 			}
 			return true;

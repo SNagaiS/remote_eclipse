@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
-
+import dao.RegistrationDAO;
 import model.User;
 
 /**
@@ -20,46 +19,45 @@ import model.User;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Registration() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Registration() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.sendRedirect("registration.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		//registration.jspからpostで来た物を取得、RegistrationDAOへ送る
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
-		String address =request.getParameter("address");
-		
+		String address = request.getParameter("address");
+
 		User user = new User(name, pass, address);
 		RegistrationDAO registrationDao = new RegistrationDAO();
-		public boolean isRagistration = registrationDao.execute(user);
-		
-		if(isRagistration) {
+		boolean isRegistration = registrationDao.execute(user);
+
+		if (isRegistration) {//登録成功の場合、セッションに保存
 			HttpSession session = request.getSession();
 			session.setAttribute("registrationUser", user);
 		}
-		//ログイン結果画面にフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher
-				("WEB-INF/jsp/registrationResult.jsp");
+		//新規登録結果画面にフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registrationResult.jsp");
 		dispatcher.forward(request, response);
 
-		}
 	}
-
 }
