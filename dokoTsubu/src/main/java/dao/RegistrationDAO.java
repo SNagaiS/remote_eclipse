@@ -27,23 +27,31 @@ public class RegistrationDAO {
 		try (Connection conn = DriverManager.getConnection(
 				JDBC_URL, DB_USER, DB_PASS)) {
 			//SELECT文を準備
-			String sql = "SELECT NAME, ADDRESS FROM USERS";
+			String sql = "SELECT ADDRESS FROM USERS";
+			//登録文を準備
+			String sqlRegistration = "INSERT INTO USERS(PASS, NAME, ADDRESS) VALUES(?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmtRegi = conn.prepareStatement(sqlRegistration);
+
+			//INSERT文中の「？」に使用する値を設定してSQL文を完成
+			pStmtRegi.setString(1, user.getPass());
+			pStmtRegi.setString(2, user.getName());
+			pStmtRegi.setString(3, user.getAddress());
 
 			//SELECTを実行し、結果表を取得
 			ResultSet rs = pStmt.executeQuery();
 			//結果表に格納されたレコードの内容を
-			//userセッションと比較、合致でtrueを返す
+			//userセッションと比較、合致がいなければtrueを返す
 			int registrationResult = 0;
 			while (rs.next()) {
-				if (rs.getString("NAME").equals(user.getName())
-						|| rs.getString("ADDRESS").equals(user.getAddress())) {
+				if (rs.getString("ADDRESS").equals(user.getAddress())) {
 					registrationResult = 1;
 				}
 			}
 			if (registrationResult != 0) {
 				return false;
 			}
+			pStmtRegi.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

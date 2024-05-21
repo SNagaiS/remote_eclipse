@@ -33,8 +33,8 @@ public class Registration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("registration.jsp");
-	}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registration.jsp");
+		dispatcher.forward(request, response);	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +54,7 @@ public class Registration extends HttpServlet {
 		if (isRegistration) {//登録成功の場合、セッションに保存
 			HttpSession session = request.getSession();
 			session.setAttribute("registrationUser", user);
+			session.setAttribute("loginUser", user);
 		}
 		//新規登録結果画面にフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registrationResult.jsp");

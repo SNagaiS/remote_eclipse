@@ -18,7 +18,7 @@ public class MuttersDAO {
 	private final String DB_PASS = "";
 
 	//これまでのつぶやきの名前、タイトル、内容、idを
-	//DBから取得するサブクラス
+	//DBから取得するクラス
 	public List<Mutter> findAll() {
 		List<Mutter> mutterList = new ArrayList<>();
 		//JDBCドライバを読み込む
@@ -54,7 +54,7 @@ public class MuttersDAO {
 		return mutterList;
 	}
 
-	//入力されたつぶやきと件名、名前をDBに入れ込むサブクラス
+	//入力されたつぶやきと件名、名前をDBに入れ込むクラス
 	public boolean create(Mutter mutter) {
 		//JDBCドライバを読み込む
 		try {
@@ -87,7 +87,7 @@ public class MuttersDAO {
 		return true;
 	}
 	
-	//ログイン機能のサブクラス
+	//ログイン機能のクラス
 	public boolean execute(User user)  {
 		//JDBCドライバを読み込む
 		try {
