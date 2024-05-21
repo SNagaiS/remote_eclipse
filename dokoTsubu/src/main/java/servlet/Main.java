@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -67,8 +69,12 @@ public class Main extends HttpServlet {
 			HttpSession session = request.getSession();
 			User loginUser = (User)session.getAttribute("loginUser");
 			
+			Date nowDate = new Date();
+			SimpleDateFormat sdf1
+	        = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
+	        String time = sdf1.format(nowDate);
 			//つぶやきをつぶやきリストに追加
-			Mutter mutter = new Mutter(loginUser.getName(), title, text);
+			Mutter mutter = new Mutter(loginUser.getName(), title, text, time);
 			PostMutterLogic postMutterLogic = new PostMutterLogic();
 			postMutterLogic.execute(mutter);
 		}else {

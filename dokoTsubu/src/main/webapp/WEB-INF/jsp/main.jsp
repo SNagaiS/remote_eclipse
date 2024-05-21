@@ -49,9 +49,9 @@
 	</c:if>
 	<c:forEach var="mutter" items="${mutterList}">
 		<p>
-			<c:out value="${mutter.id}" />.
+			<c:out value="${mutter.id}" />. 
 			<c:out value="${mutter.userName}" />
-			さん<br> 件名:
+			さん <c:out value="${mutter.time}" /><br> 件名:
 			<c:out value="${mutter.title}" />
 			<br> 本文:
 			<c:out value="${mutter.text}" />
