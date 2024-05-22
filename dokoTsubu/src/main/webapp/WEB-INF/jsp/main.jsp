@@ -55,6 +55,7 @@
 			<c:out value="${mutter.title}" />
 			<br> 本文:
 			<c:out value="${mutter.text}" />
+			<c:if 
 		</p>
 		<hr>
 	</c:forEach>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.LoginDAO;
 import dao.RegistrationDAO;
 import model.User;
 
@@ -51,10 +52,15 @@ public class Registration extends HttpServlet {
 		RegistrationDAO registrationDao = new RegistrationDAO();
 		boolean isRegistration = registrationDao.execute(user);
 
-		if (isRegistration) {//登録成功の場合、セッションに保存
-			HttpSession session = request.getSession();
-			session.setAttribute("registrationUser", user);
-			session.setAttribute("loginUser", user);
+		if (isRegistration) {//登録成功の場合、LoginDAOにてUID取得
+			User logUser = new User(name, pass, 0);
+			LoginDAO loginDAO = new LoginDAO();
+			boolean isLog = loginDAO.execute(logUser);
+			if(isLog) {//UID取得成功したら、セッションスコープにloginUser保存
+				HttpSession session = request.getSession();
+				session.setAttribute("loginUser", logUser);
+
+			}
 		}
 		//新規登録結果画面にフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registrationResult.jsp");
