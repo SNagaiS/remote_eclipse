@@ -46,6 +46,7 @@ public class RegistrationDAO {
 			while (rs.next()) {
 				if (rs.getString("ADDRESS").equals(user.getAddress())) {
 					registrationResult = 1;
+					break;
 				}
 			}
 			if (registrationResult != 0) {

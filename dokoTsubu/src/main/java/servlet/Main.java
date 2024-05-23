@@ -69,11 +69,12 @@ public class Main extends HttpServlet {
 			HttpSession session = request.getSession();
 			User loginUser = (User)session.getAttribute("loginUser");
 			
+			//つぶやき投稿押下日時を取得
 			Date nowDate = new Date();
 			SimpleDateFormat sdf1
 	        = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
 	        String time = sdf1.format(nowDate);
-			//つぶやきをつぶやきリストに追加
+			//つぶやきと日時をつぶやきリストに追加
 			Mutter mutter = new Mutter(loginUser.getName(), title, text, time);
 			PostMutterLogic postMutterLogic = new PostMutterLogic();
 			postMutterLogic.execute(mutter);

@@ -1,0 +1,170 @@
+@charset "UTF-8";
+html{
+    font-size: 100%;
+    box-sizing: border-box;
+}
+body{
+    line-height: 1.7;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    border-bottom: solid 1px blue;
+}
+img{
+    max-width: 100%;
+}
+table{
+	border-collapse: collapse;
+}
+#wrap{
+	text-align: center;
+	max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+
+/* ボタン */
+.button{
+	display: block;
+    font-size: 18px;
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 180px;
+    margin: 20px auto;
+}
+.button:hover{
+    background: #0090aa;
+}
+
+.button2{
+	display: block;
+    font-size: 18px;
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 180px;
+    margin: 0 auto;
+}
+
+.buttonmini{
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 2px;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+.buttonmini:hover{
+	background: #0090aa;
+	border-bottom: none;
+}
+
+
+/* inputボックス共通 */
+.txt{
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    margin: 0.5em 0;
+}
+.loginbox{
+    display: inline-block;
+    width: 200px;
+    padding: 0.5em;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    margin: 0.5em 0;
+}
+
+/* エラーメッセージ共通 */
+.error{
+	font-weight: bold;
+	color: red;
+}
+
+/* メイン画面 */
+.main{
+	display: flex;
+	justify-content: space-around;
+}
+
+.postmutter{
+	width: 37%;
+	border:1px solid black;
+	padding: 5px;
+}
+.showmutter{
+	width: 60%;
+}
+.muttertable{
+	border: 1px solid #999;
+	width: 100%;
+	margin-bottom: 20px;
+	text-align: left;
+	background-color: #f2f2f2;;
+}
+
+.muttertable td{
+	width:50%;
+}
+
+.mini{
+	color: #393b43;
+	font-size: 10px;
+	
+}
+
+
+/* adminAccount.jsp */
+.accountlist{
+	margin: 0 auto;
+	border: 1px solid #999;
+}
+.accountlist tr:nth-child(odd){
+  background-color: #d7d9e1;
+}
+
+.accountlist td{
+	padding: 5px 10px 5px 0;
+
+}
+
+select{
+	height: 25px;
+	background: #f2f2f2;
+}
+
+.nav{
+	display: flex;
+	justify-content: space-around;
+}
+
+.muttertable1{
+	border: 1px solid #999;
+	width: 50%;
+	margin-bottom: 20px;
+	text-align: left;
+}
+.muttertable1 tr{
+		vertical-align: top;
+		height: fit-content;
+		border-bottom: 1px solid #999;
+}
+.muttertable1 tr:first-child{
+	height: 15px;
+}
+
