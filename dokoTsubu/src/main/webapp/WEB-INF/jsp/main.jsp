@@ -49,14 +49,16 @@
 	</c:if>
 	<c:forEach var="mutter" items="${mutterList}">
 		<p>
-			<c:out value="${mutter.id}" />. 
+			<c:out value="${mutter.num}" />. 
 			<c:out value="${mutter.userName}" />
 			さん <c:out value="${mutter.time}" /><br> 件名:
 			<c:out value="${mutter.title}" />
 			<br> 本文:
 			<c:out value="${mutter.text}" />
-			<c:if 
-		</p>
+<%-- 			<c:if test="${mutter.uId == loginUser.uId}">
+			<a href="#">つぶやきの削除</a>
+			</c:if>
+ --%>		</p>
 		<hr>
 	</c:forEach>
 </body>

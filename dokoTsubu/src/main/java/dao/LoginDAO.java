@@ -38,7 +38,7 @@ public class LoginDAO {
 			while (rs.next()) {
 				if(rs.getString("NAME").equals(user.getName())
 						&& rs.getString("PASS").equals(user.getPass())) {
-					user.setUID(rs.getInt("UID"));
+					user.setUID(rs.getInt("ID"));
 					namePassResult +=1;
 					break;
 				}

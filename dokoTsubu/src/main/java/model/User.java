@@ -6,15 +6,15 @@ public class User implements Serializable {
 	private String name;
 	private String pass;
 	private String address;
-	private int UID;
+	private int uId;
 
 	public User() {
 	}
 
-	public User(String name, String pass, int UID) {
+	public User(String name, String pass, int uId) {
 		this.name = name;
 		this.pass = pass;
-		this.UID = UID;
+		this.uId = uId;
 	}
 
 	public User(String name, String pass) {
@@ -42,9 +42,9 @@ public class User implements Serializable {
 	}
 
 	public int getUID() {
-		return UID;
+		return uId;
 	}
-	public void setUID(int UID) {
-		this.UID = UID;
+	public void setUID(int uId) {
+		this.uId = uId;
 	}
 }
