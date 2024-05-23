@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="docoTsubu_AZ">
+    <wb-module deploy-name="dokoTsubu202">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <dependent-module archiveName="jstl-impl-1.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jstl-impl-1.2/jstl-impl-1.2">
@@ -11,7 +11,7 @@
         <dependent-module archiveName="h2-2.2.224.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/h2-2.2.224/h2-2.2.224">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="docoTsubu_AZ"/>
-        <property name="java-output-path" value="/docoTsubu_AZ/build/classes"/>
+        <property name="context-root" value="dokoTsubu202"/>
+        <property name="java-output-path" value="/dokoTsubu202/build/classes"/>
     </wb-module>
 </project-modules>

@@ -18,6 +18,12 @@ public class MutterDAO {
 	
 	public List<Mutter> findAll(){
 		List<Mutter> mutterList = new ArrayList<>();
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
 			String sql = "SELECT * FROM MUTTER WHERE IS_EXIST = 0 ORDER BY ID DESC";
@@ -46,6 +52,12 @@ public class MutterDAO {
 	}
 	
 	public boolean create(Mutter mutter) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			//INSERT文の準備
 			String sql = "INSERT INTO MUTTER(NAME,TITLE,TEXT,DATE) VALUES(?,?,?,?)";
@@ -70,6 +82,13 @@ public class MutterDAO {
 	
 	//削除処理
 	public void deleteMutter(int no) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
+		
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			String sql = "UPDATE MUTTER SET IS_EXIST = 1 WHERE ID =?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -85,6 +104,12 @@ public class MutterDAO {
 	
 	//全削除処理
 	public void allDeleteMutter() {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			String sql = "UPDATE MUTTER SET IS_EXIST = 1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -99,6 +124,12 @@ public class MutterDAO {
 	
 	//更新前重複処理
 	public boolean editCheck(Mutter mutter) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			String sql = "SELECT * FROM MUTTER WHERE ID=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -129,6 +160,12 @@ public class MutterDAO {
 	
 	//更新
 	public boolean upDate(Mutter mutter) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try (Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
 			String sql = "UPDATE MUTTER SET TITLE = ?, TEXT = ?, DATE = ?,EDIT = ? WHERE ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -153,6 +190,12 @@ public class MutterDAO {
 	
 	//goodカウントを増加
 	public void goodCountUp(int no) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			String sql = "UPDATE Mutter SET GOOD= GOOD + 1 WHERE ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -170,6 +213,12 @@ public class MutterDAO {
 	
 	//badカウントを追加
 	public void badCountUp(int no) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException(
+					"JDBCドライバを読み込めませんでした");
+		}
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 			String sql = "UPDATE Mutter SET BAD= BAD + 1 WHERE ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -189,6 +238,12 @@ public class MutterDAO {
 	//更新前重複処理
 		public Mutter postMutter(int no) {
 			Mutter mutter = null;
+			try {
+				Class.forName("org.h2.Driver");
+			} catch (ClassNotFoundException e) {
+				throw new IllegalStateException(
+						"JDBCドライバを読み込めませんでした");
+			}
 			try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)) {
 				String sql = "SELECT * FROM MUTTER WHERE ID=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
